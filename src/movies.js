@@ -1,34 +1,8 @@
-const movies = [
-  {
-    title: 'A The Shawshank Redemption',
-    year: 1994,
-    director: 'Frank Darabont',
-    genre: ['Crime', 'Drama'],
-    score: 9.3
-  },
-  {
-    title: 'C The Godfather',
-    year: 1972,
-    director: 'Francis Ford Coppola',
-    duration: '2h',
-    genre: ['Crime', 'Drama'],
-    score: 9.2
-  },
-  {
-    title: 'B The Godfather',
-    year: 1972,
-    director: 'Francis Ford Coppola',
-    duration: '2h 55min',
-    genre: ['Crime', 'Drama'],
-    score: 9.2
-  }]
-
-
 // Iteration 1: All directors? - Get the array of all directors.
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 function getAllDirectors(movies) {
-  directors = movies.map(function(movie){
+  const directors = movies.map(function(movie){
     return movie.director
   })
   return directors
@@ -42,7 +16,7 @@ function howManyMovies(movies) {
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(movies) {
   if (movies.length === 0){return 0}
-  avgScore = (movies.reduce(function (accumulator, movie) {
+  const avgScore = (movies.reduce(function (accumulator, movie) {
     return accumulator + (movie.score?movie.score:0)
   }, 0))/movies.length
   return Math.round(avgScore*100)/100
@@ -55,7 +29,7 @@ function dramaMoviesScore(movies) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(movies) {
-  sortedMovies = [...movies]
+  const sortedMovies = [...movies]
   return sortedMovies.sort(function(a,b){
     if (a.year !== b.year){
       return a.year - b.year
@@ -66,19 +40,19 @@ function orderByYear(movies) {
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(movies) {
-  sortedMovies = [...movies]
+  const sortedMovies = [...movies]
   return sortedMovies.sort((a,b) => a.title.localeCompare(b.title)).filter((movie, index)=> index<20).map(movie=>movie.title)
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(movies) {
-  cleanMovies = movies.map(a => {return {...a}})
+  const cleanMovies = movies.map(a => {return {...a}})
   cleanMovies.forEach(function(movie){
     if (!movie.duration){
       movie.duration = 0
       return
     }
-    durationList = movie.duration.split(" ")
+    const durationList = movie.duration.split(" ")
     switch (durationList.length) {
       case 1:
         if (durationList[0].includes("h")){movie.duration = Number(movie.duration.slice(0, -1))*60}
@@ -92,8 +66,6 @@ function turnHoursToMinutes(movies) {
   return cleanMovies
 }
 
-console.log(turnHoursToMinutes(movies))
-
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(movies) {
@@ -101,8 +73,8 @@ function bestYearAvg(movies) {
   if (movies.length === 0){
     return null
   }
-  listOfYears = []
-  listOfCount = []
+  const listOfYears = []
+  const listOfCount = []
   movies.forEach(function(movie){
     if (listOfYears.includes(movie.year)){
       listOfCount.filter(item=> (item.year===movie.year))[0].count ++
